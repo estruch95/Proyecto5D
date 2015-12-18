@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.estruch18.proyecto5d.AddEvento">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Add Evento"
+        android:id="@+id/tvEvento"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Título:"
+        android:id="@+id/tvTitulo"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/tvEvento"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etTitulo"
+        android:layout_alignTop="@+id/tvTitulo"
+        android:layout_alignStart="@+id/tvEvento"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Descripcion"
+        android:id="@+id/tvDescripcion"
+        android:layout_below="@+id/etTitulo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etDescripcion"
+        android:layout_below="@+id/etTitulo"
+        android:layout_alignStart="@+id/etTitulo"
+        android:layout_alignEnd="@+id/etTitulo"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fecha inicial"
+        android:id="@+id/textView"
+        android:layout_below="@+id/etDescripcion"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etFinicio"
+        android:layout_below="@+id/etDescripcion"
+        android:layout_alignEnd="@+id/etDescripcion"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/etDescripcion" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fecha final"
+        android:id="@+id/tvFfinal"
+        android:layout_below="@+id/etFinicio"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etFfinal"
+        android:layout_below="@+id/etFinicio"
+        android:layout_marginTop="10dp"
+        android:layout_alignEnd="@+id/etFinicio"
+        android:layout_alignStart="@+id/etFinicio" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Hora inicial"
+        android:id="@+id/tvHinicial"
+        android:layout_below="@+id/etFfinal"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etHinicial"
+        android:layout_below="@+id/etFfinal"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/etFfinal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Hora final"
+        android:id="@+id/tvHfinal"
+        android:layout_below="@+id/etHinicial"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etHfinal"
+        android:layout_below="@+id/etHinicial"
+        android:layout_alignEnd="@+id/etHinicial"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/etHinicial" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir evento"
+        android:id="@+id/btnAddEvento"
+        android:onClick="accionBtnAddEvento"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/etHfinal" />
+</RelativeLayout>
