@@ -73,6 +73,7 @@ public class MainActivity extends ActionBarActivity {
         String selection = " ((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) AND (" + CalendarContract.Calendars.ACCOUNT_TYPE + " = ?))";
         //Se realiza la consulta al ContentProvider y se almacena en un cursor
         Cursor cursor = getContentResolver().query(CalendarContract.Calendars.CONTENT_URI, projection, selection, selArgs, null);
+        //Recorremos el cursor y recogemos el ID(long)
         if(cursor.moveToFirst()){
             return cursor.getLong(0);
         }
@@ -88,20 +89,31 @@ public class MainActivity extends ActionBarActivity {
             //Creación de un "bundle" ContentValues
             ContentValues values = new ContentValues();
             //Añadimos las características del calendario
+            //Nombre de cuenta
             values.put(CalendarContract.Calendars.ACCOUNT_NAME, "Ivan");
+            //Tipo de cuenta (local)
             values.put(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
+            //Nombre del calendario
             values.put(CalendarContract.Calendars.NAME, "Prueba de calendario");
+            //Nombre que mostrará como título el calendario
             values.put(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, "Prueba de calendario");
+            //Color del calendario
             values.put(CalendarContract.Calendars.CALENDAR_COLOR, 0xffff0000);
+            //Tipo de acceso al calendario
             values.put(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL, CalendarContract.Calendars.CAL_ACCESS_OWNER);
+            //Correo de la cuenta del calendario
             values.put(CalendarContract.Calendars.OWNER_ACCOUNT, "estruch95.b@gmail.com");
+            //Zona horaria del calendario
             values.put(CalendarContract.Calendars.CALENDAR_TIME_ZONE, "Europe/Madrid");
             values.put(CalendarContract.Calendars.SYNC_EVENTS, 1);
 
+            //Añadido de los valores anteriores a la dirección del ContentProvider
             Uri.Builder calendarBuilder = CalendarContract.Calendars.CONTENT_URI.buildUpon();
+            //Append nombre de cuenta y tipo de cuenta
             calendarBuilder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, "Ivan");
             calendarBuilder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
             calendarBuilder.appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true");
+            //Insertamos el calendario con los valores definidos anteriormente
             Uri uri = getContentResolver().insert(calendarBuilder.build(), values);
 
             //Información
