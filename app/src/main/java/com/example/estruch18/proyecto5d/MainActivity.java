@@ -66,9 +66,12 @@ public class MainActivity extends ActionBarActivity {
 
     //Método encargado de obtener el ID del calendario en caso de existir
     public long getIdCalendar(){
+        //Projection: Campo que se desea consultar en el ContentProvider 
         String[] projection = new String[]{CalendarContract.Calendars._ID};
+        //SelArgs = ACCOUNT_NAME = "Ivan" y ACCOUNT_TYPE = "ACCOUNT_TYPE_LOCAL"
         String[] selArgs = new String[]{"Ivan", CalendarContract.ACCOUNT_TYPE_LOCAL};
         String selection = " ((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) AND (" + CalendarContract.Calendars.ACCOUNT_TYPE + " = ?))";
+        //Se realiza la consulta al ContentProvider y se almacena en un cursor
         Cursor cursor = getContentResolver().query(CalendarContract.Calendars.CONTENT_URI, projection, selection, selArgs, null);
         if(cursor.moveToFirst()){
             return cursor.getLong(0);
