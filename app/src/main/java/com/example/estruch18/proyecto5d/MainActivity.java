@@ -110,9 +110,7 @@ public class MainActivity extends ActionBarActivity {
 
             //Añadido de los valores anteriores a la dirección del ContentProvider
             Uri.Builder calendarBuilder = CalendarContract.Calendars.CONTENT_URI.buildUpon();
-            //Append nombre de cuenta y tipo de cuenta
-            calendarBuilder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, "Ivan");
-            calendarBuilder.appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
+            //CALLER_IS_SYNCADAPTER
             calendarBuilder.appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true");
             //Insertamos el calendario con los valores definidos anteriormente
             Uri uri = getContentResolver().insert(calendarBuilder.build(), values);
