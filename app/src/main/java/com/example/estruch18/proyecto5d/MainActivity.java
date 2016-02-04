@@ -80,6 +80,7 @@ public class MainActivity extends ActionBarActivity {
         else{
             return -1;
         }
+        cursor.close();
     }
 
     //Método cuya finalidad es la creación de un calendario
@@ -120,31 +121,35 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(), "Se ha creado un calendario", Toast.LENGTH_SHORT).show();
         }
         else{
+            //En caso de existir un calendario, cargamos sus eventos correspondientes
             loadEventos();
         }
     }
 
     //Método encargado de leer eventos
     public ArrayList<String> loadEventos(){
-        //ArrayList de eventos cargados
+        //ArrayList donde se almacenaran los eventos recuperados
         ArrayList<String> eventos = new ArrayList<String>();
-        //Datos que queremos cargar sobre dichos eventos
+        //Projection: Campo que se desea consultar en el ContentProvider 
         String[] projection = new String[]{CalendarContract.Events.TITLE, CalendarContract.Events.DESCRIPTION};
-        //Condiciones de búsqueda o query
+        //SelArgs = ACCOUNT_NAME = "Ivan" y ACCOUNT_TYPE = "ACCOUNT_TYPE_LOCAL"
         String[] selArgs = new String[]{"Ivan", CalendarContract.ACCOUNT_TYPE_LOCAL};
-        //Implementación
         String selection = " ((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) AND (" + CalendarContract.Calendars.ACCOUNT_TYPE + " = ?))";
 
-        //Cursor y recorrido
+        //Se realiza la consulta al ContentProvider y se almacena en un cursor
         Cursor cursor = getContentResolver().query(CalendarContract.Events.CONTENT_URI, projection, selection, selArgs, null);
+        //Si existen datos en el cursor se procede a recorrerlo y extraer sus datos (eventos recuperados)
         if(cursor != null && cursor.moveToFirst()){
             do{
+                //Guardamos el título y la descripción del evento recuperado
                 String titulo = cursor.getString(0);
                 String descripcion= cursor.getString(1);
-
+                
                 String evento = "Nombre: "+titulo+"    Descripción: "+descripcion;
+                //Lo añadimos al ArrayList<String> mencionado anteriormente
                 eventos.add(evento);
             }while (cursor.moveToNext());
+            //Cerramos el cursor
             cursor.close();
         }
         return eventos;
@@ -152,6 +157,7 @@ public class MainActivity extends ActionBarActivity {
 
     //Listener
     public void accionBtnAddEvento(View v){
+        //Cambia al activity de insertar evento
         Intent actAddEvento = new Intent(getApplicationContext(), AddEvento.class);
         startActivity(actAddEvento);
     }
